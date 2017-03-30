@@ -1,6 +1,4 @@
 from sklearn.datasets import load_iris
-from pandas import DataFrame
-from IPython.display import display
 import sklearn as sk
 
 data = load_iris()
