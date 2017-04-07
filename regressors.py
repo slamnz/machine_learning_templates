@@ -12,24 +12,38 @@ data = load_boston()
 X = data.data
 y = data.target
 
-#
+##
 
-from sklearn.model_selection import cross_val_score
+#X = "<FEATURE DATA HERE>"
+#y = "<TARGET DATA HERE>"
+
+##
 
 # Metrics
 
 def test_results(model, X, y):
+    
+    def test_parameters(cv, scoring):
 
-    try:
-        from sklearn.model_selection import cross_val_score
-        compute = cross_val_score(model, X, y, cv=10)
-        mean = compute.mean()
-        std = compute.std()
-        print(type(model).__name__)
-        print("Average Score: %.2f (+/- %.2f) \n" % (abs(mean),std))
-    except Exception as e:
-        print(e)
-        print("Failed.")
+        try:
+            from sklearn.model_selection import cross_val_score
+            compute = cross_val_score(model, X, y, scoring=scoring, cv=cv)
+            mean = compute.mean()
+            std = compute.std()
+            print("Average %s: %.2f (+/- %.2f)" % (scoring,mean,std))
+        except Exception as e:
+            print(e)
+            print("Failed.")
+            
+    print(type(model).__name__)
+    
+    scoring_list = ["r2", "neg_median_absolute_error", "neg_mean_squared_error", "neg_mean_absolute_error"]
+    
+    for s in scoring_list:
+        test_parameters(3,s)
+    
+    print()
+        
 # Support Vector Machines
 
 from sklearn.svm import SVR, LinearSVR, NuSVR
@@ -60,8 +74,8 @@ from sklearn.neighbors import KNeighborsRegressor, RadiusNeighborsRegressor
 regressor = KNeighborsRegressor()
 test_results(regressor, X, y)
 
-#regressor = RadiusNeighborsRegressor()
-#test_results(regressor, X, y)
+regressor = RadiusNeighborsRegressor()
+test_results(regressor, X, y)
 
 #Gaussian Process
 
@@ -84,8 +98,8 @@ test_results(regressor, X, y)
 
 from sklearn.isotonic import IsotonicRegression
 
-#regressor = IsotonicRegression()
-#test_results(regressor, X, y)
+regressor = IsotonicRegression()
+test_results(regressor, X, y)
 
 from sklearn.neural_network import MLPRegressor
 
