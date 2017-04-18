@@ -67,6 +67,10 @@ from sklearn.linear_model import SGDRegressor
 regressor = SGDRegressor()
 test_results(regressor, X, y)
 
+# Linear Models
+
+from sklearn.linear_model import HuberRegressor, PassiveAggressiveRegressor, RANSACRegressor, SGDRegressor,TheilSenRegressor,  
+
 # KNeighbors
 
 from sklearn.neighbors import KNeighborsRegressor, RadiusNeighborsRegressor
@@ -89,6 +93,28 @@ test_results(regressor, X, y)
 from sklearn.tree import DecisionTreeRegressor
 
 regressor = DecisionTreeRegressor()
+test_results(regressor, X, y)
+
+from sklearn.tree import ExtraTreeRegressor
+
+regressor = ExtraTreeRegressor()
+test_results(regressor, X, y)
+
+
+# Ensemble Methods
+
+from sklearn.ensemble import AdaBoostRegressor, BaggingRegressor, ExtraTreesRegressor, RandomForestRegressor
+
+regressor = AdaBoostRegressor()
+test_results(regressor, X, y)
+
+regressor = BaggingRegressor()
+test_results(regressor, X, y)
+
+regressor = ExtraTreesRegressor()
+test_results(regressor, X, y)
+
+regressor = RandomForestRegressor()
 test_results(regressor, X, y)
 
 from sklearn.ensemble import GradientBoostingRegressor
