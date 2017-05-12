@@ -13,8 +13,11 @@ def display_classifier_results(X,y):
 
     models = []
 
+    from xgboost import XGBClassifier
+    models += [XGBClassifier()]
+    
     from sklearn.neighbors import KNeighborsClassifier
-    models = [KNeighborsClassifier()]
+    models += [KNeighborsClassifier()]
 
     from sklearn.naive_bayes import GaussianNB, MultinomialNB, BernoulliNB
     models += [GaussianNB(), MultinomialNB(), BernoulliNB()]
@@ -55,5 +58,7 @@ def display_classifier_results(X,y):
     from IPython.display import display
 
     display(DataFrame(data=output).T.round(2).sort_values("Average Score", ascending=False))
+
+# === Return Results === #
 
 display_classifier_results(X,y)
