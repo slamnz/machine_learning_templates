@@ -17,6 +17,9 @@ def character_count(series):
 def mean_characters_per_word(series):
     return character_count(series).divide(word_count(series))
 
+def unique_vocabulary(series):
+    return set(word_tokenize(" ".join(list(series))))
+
 def unique_vocabulary_count(series):
     return series.apply(str).apply(lambda x: len(set([word for word in word_tokenize(x)])))
 
